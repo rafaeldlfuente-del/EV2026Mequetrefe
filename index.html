@@ -517,7 +517,7 @@
     <header>
         <div class="brand-name">Mequetrefe Grupo Educativo</div>
         <div class="subtitle">Escuela de Verano — CEIP Salvador Vinuesa, Córdoba</div>
-        <div class="version-tag">v1.4.1</div>
+        <div class="version-tag">v1.4.2</div>
     </header>
 
     <div class="main-layout">
@@ -1081,8 +1081,8 @@
             const res_am2 = am2Active ? getMultiPrice('am2', 'am') : { total: 0, breakdown: [] };
             const res_c2 = c2Active ? getMultiPrice('c2', 'c') : { total: 0, breakdown: [] };
 
-            // Discount only applies to 'ev', 'am', 'c' entries that are NOT 'dia'
-            const discountableTotal = res_ev2.discountableTotal + (am2Active ? res_am2.discountableTotal : 0) + (c2Active ? res_c2.discountableTotal : 0);
+            // Discount only applies to 'ev' entries that are NOT 'dia'
+            const discountableTotal = res_ev2.discountableTotal;
             const discount = discountableTotal * DISCOUNT_RATE;
             
             let subtotal2 = res_ev2.total + res_am2.total + res_c2.total - discount;
