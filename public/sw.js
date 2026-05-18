@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mequetrefe-calc-v3';
+const CACHE_NAME = 'mequetrefe-calc-v4';
 const ASSETS = [
   './',
   './index.html',
@@ -24,6 +24,14 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+  // Use a Network-First strategy for the main page to ensure users get the latest version
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then(response => {
       return response || fetch(event.request);
