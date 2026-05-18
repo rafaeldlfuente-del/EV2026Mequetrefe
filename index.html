@@ -854,12 +854,10 @@
 
         // Visibility of options grids
         ['am1', 'am2', 'c1', 'c2'].forEach(id => {
-            const active = document.getElementById(`${id}_active`).checked;
+            const el = document.getElementById(`${id}_active`);
             const options = document.getElementById(`${id}_options`);
-            if (active) {
-                options.style.display = 'grid';
-            } else {
-                options.style.display = 'none';
+            if (el && options) {
+                options.style.display = el.checked ? 'grid' : 'none';
             }
         });
 
