@@ -451,7 +451,7 @@
     <header>
         <div class="brand-name">Mequetrefe Grupo Educativo</div>
         <div class="subtitle">Escuela de Verano — CEIP Salvador Vinuesa, Córdoba</div>
-        <div class="version-tag">v1.3.0</div>
+        <div class="version-tag">v1.3.1</div>
     </header>
 
     <div class="main-layout">
@@ -1055,7 +1055,16 @@
 
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW failed', err));
+            navigator.serviceWorker.register('./sw.js').then(reg => {
+                reg.onupdatefound = () => {
+                    const installingWorker = reg.installing;
+                    installingWorker.onstatechange = () => {
+                        if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            window.location.reload();
+                        }
+                    };
+                };
+            }).catch(err => console.log('SW failed', err));
         });
     }
 
