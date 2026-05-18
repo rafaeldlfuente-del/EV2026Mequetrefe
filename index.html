@@ -29,52 +29,52 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.5;
+            line-height: 1.4;
             min-height: 100vh;
-            padding-bottom: 40px;
+            padding-bottom: 20px;
         }
 
         .container {
-            max-width: 1024px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         header {
             position: relative;
-            height: 140px;
+            height: 100px;
             background: linear-gradient(135deg, var(--primary) 0%, #2b5a91 40%, var(--secondary) 100%);
             color: white;
-            padding: 20px;
+            padding: 10px 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             border-bottom: 4px solid var(--secondary);
         }
 
         .brand-name {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 800;
             letter-spacing: -0.5px;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .subtitle {
-            font-size: 14px;
+            font-size: 13px;
             opacity: 0.9;
             font-weight: 500;
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
         .version-tag {
             position: absolute;
-            bottom: 8px;
+            bottom: 6px;
             right: 12px;
-            font-size: 9px;
-            opacity: 0.6;
+            font-size: 8px;
+            opacity: 0.5;
             font-family: monospace;
             letter-spacing: 0.5px;
             color: rgba(255, 255, 255, 0.8);
@@ -83,22 +83,22 @@
         .main-layout {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
-            padding: 0 15px;
+            gap: 16px;
+            padding: 0 12px;
         }
 
         @media (min-width: 900px) {
             .main-layout {
-                grid-template-columns: 1fr 340px;
+                grid-template-columns: 1fr 320px;
                 align-items: start;
             }
         }
 
         .child-section {
             background: var(--white);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 12px;
             border: 2px solid var(--border);
             transition: all 0.3s ease;
         }
@@ -109,11 +109,11 @@
         }
 
         .child-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             color: var(--primary);
-            margin-bottom: 20px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -121,32 +121,34 @@
 
         .child-title span {
             display: inline-block;
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             background: var(--accent);
             color: var(--text);
             border-radius: 50%;
             text-align: center;
-            line-height: 24px;
-            font-size: 12px;
+            line-height: 22px;
+            font-size: 11px;
             font-weight: 800;
         }
 
         .form-group {
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #f2f2f2;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f5f5f5;
         }
 
         .form-group:last-child {
             border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
         }
 
         .label-main {
             display: block;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: var(--text);
             display: flex;
             justify-content: space-between;
@@ -156,8 +158,8 @@
         .badge-included {
             background: #E8F5E9;
             color: #2E7D32;
-            font-size: 10px;
-            padding: 2px 6px;
+            font-size: 9px;
+            padding: 1px 5px;
             border-radius: 4px;
             font-weight: 800;
         }
@@ -165,20 +167,20 @@
         .radio-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 8px;
         }
 
         .option-card {
             border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 12px;
+            border-radius: 8px;
+            padding: 10px;
             cursor: pointer;
             transition: all 0.2s;
             position: relative;
             background: #fafafa;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
 
         .option-card:hover {
@@ -194,7 +196,7 @@
         .option-header {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .option-card input {
@@ -206,14 +208,14 @@
         }
 
         .option-name {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             color: var(--text);
             display: block;
         }
 
         .option-price {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--text-muted);
         }
 
@@ -221,18 +223,18 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 6px;
+            gap: 4px;
             background: #ffffff;
-            padding: 4px 8px;
-            border-radius: 6px;
+            padding: 2px 6px;
+            border-radius: 5px;
             border: 1px solid #ddd;
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
         .quantity-control button {
-            width: 24px;
-            height: 24px;
-            border-radius: 4px;
+            width: 22px;
+            height: 22px;
+            border-radius: 3px;
             border: 1px solid #eee;
             background: #f8f9fa;
             cursor: pointer;
@@ -240,7 +242,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .quantity-control button:hover {
@@ -249,46 +251,46 @@
         }
 
         .quantity-control span {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
-            min-width: 16px;
+            min-width: 14px;
             text-align: center;
         }
 
         .checkbox-row {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             cursor: pointer;
-            padding: 10px;
+            padding: 8px;
             background: #fcfcfc;
             border: 1px solid #eee;
-            border-radius: 10px;
-            margin-bottom: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
         }
 
         .checkbox-row input {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             accent-color: var(--primary);
         }
 
         .checkbox-row span {
             font-weight: 700;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .toggle-second {
             background: var(--white);
             border: 2px solid var(--secondary);
-            padding: 16px;
-            border-radius: 12px;
+            padding: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             cursor: pointer;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             transition: all 0.2s ease;
         }
 
@@ -297,21 +299,21 @@
         }
 
         .toggle-second input {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             accent-color: var(--secondary);
         }
 
         .toggle-second span {
             font-weight: 800;
             color: var(--secondary);
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .summary-card {
             background: var(--white);
-            border-radius: 16px;
-            padding: 24px;
+            border-radius: 12px;
+            padding: 16px;
             box-shadow: var(--shadow-lg);
             position: sticky;
             top: 20px;
@@ -319,22 +321,22 @@
         }
 
         .summary-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             color: var(--text);
             border-bottom: 2px solid var(--accent);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
 
         .summary-item {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .summary-item h4 {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: var(--primary);
             text-transform: uppercase;
         }
@@ -342,17 +344,28 @@
         .summary-line {
             display: flex;
             justify-content: space-between;
-            font-size: 13px;
-            margin-bottom: 4px;
+            font-size: 12px;
+            margin-bottom: 3px;
             color: var(--text-muted);
         }
 
         .summary-line.bold {
             color: var(--text);
             font-weight: 700;
+            margin-top: 4px;
+            padding-top: 4px;
+            border-top: 1px dashed #eee;
+        }
+
+        .summary-subtotal {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 700;
             margin-top: 6px;
             padding-top: 6px;
-            border-top: 1px dashed #eee;
+            border-top: 1px solid #eee;
+            color: var(--text);
         }
 
         .discount-badge {
@@ -360,7 +373,7 @@
             color: var(--text);
             padding: 2px 6px;
             border-radius: 4px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 800;
             margin-top: 4px;
             display: inline-block;
@@ -369,32 +382,56 @@
         .total-display {
             background: var(--text);
             color: white;
-            padding: 20px;
-            border-radius: 12px;
+            padding: 16px;
+            border-radius: 10px;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .total-amount {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 900;
             display: block;
-            margin-top: 4px;
+            margin-top: 2px;
+        }
+
+        .reset-button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            color: #666;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .reset-button:hover {
+            background-color: #e9ecef;
+            color: #333;
+            border-color: #ddd;
         }
 
         .unit-pill {
-            font-size: 10px;
-            background: #eee;
-            padding: 2px 5px;
-            border-radius: 4px;
+            font-size: 9px;
+            background: #f0f0f0;
+            padding: 1px 4px;
+            border-radius: 3px;
             color: #666;
-            margin-left: 5px;
+            margin-left: 4px;
         }
 
         .footer-note {
             text-align: center;
-            padding: 20px;
-            font-size: 11px;
+            padding: 16px;
+            font-size: 10px;
             color: var(--text-muted);
         }
 
@@ -414,7 +451,7 @@
     <header>
         <div class="brand-name">Mequetrefe Grupo Educativo</div>
         <div class="subtitle">Escuela de Verano — CEIP Salvador Vinuesa, Córdoba</div>
-        <div class="version-tag">v1.2.5</div>
+        <div class="version-tag">v1.3.0</div>
     </header>
 
     <div class="main-layout">
@@ -790,6 +827,11 @@
                     <span class="total-label">Total Familia</span>
                     <span class="total-amount" id="total_amount">210,00 €</span>
                 </div>
+
+                <button class="reset-button" type="button" onclick="resetForm()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                    Nuevo Cálculo
+                </button>
             </div>
         </aside>
     </div>
@@ -986,6 +1028,30 @@
     document.querySelectorAll('input').forEach(input => {
         input.addEventListener('change', calculate);
     });
+
+    function resetForm() {
+        // Reset all checkboxes/radios
+        document.querySelectorAll('input').forEach(input => {
+            if (input.id === 'ev1_mes') {
+                input.checked = true;
+            } else {
+                input.checked = false;
+            }
+        });
+        
+        // Reset quantities in the object
+        Object.keys(quantities).forEach(group => {
+            Object.keys(quantities[group]).forEach(type => {
+                quantities[group][type] = 1;
+                const el = document.getElementById(`qty_${group}_${type}`);
+                if (el) el.textContent = 1;
+            });
+        });
+        
+        calculate();
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
