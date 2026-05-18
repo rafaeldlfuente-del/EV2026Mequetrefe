@@ -41,32 +41,35 @@
 
         header {
             position: relative;
-            height: 100px;
-            background: linear-gradient(135deg, var(--primary) 0%, #2b5a91 40%, var(--secondary) 100%);
-            color: white;
-            padding: 10px 20px;
+            background: var(--white);
+            color: var(--text);
+            padding: 16px 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            margin-bottom: 16px;
-            border-bottom: 4px solid var(--secondary);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            border-top: 5px solid var(--primary);
+            border-bottom: 1px solid var(--border);
         }
 
         .brand-name {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 800;
             letter-spacing: -0.5px;
             line-height: 1.1;
+            color: var(--primary);
         }
 
         .subtitle {
             font-size: 13px;
-            opacity: 0.9;
-            font-weight: 500;
-            margin-top: 2px;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .version-tag {
@@ -74,10 +77,58 @@
             bottom: 6px;
             right: 12px;
             font-size: 8px;
-            opacity: 0.5;
             font-family: monospace;
             letter-spacing: 0.5px;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-muted);
+            opacity: 0.5;
+        }
+
+        .paid-input-group {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .paid-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .paid-line input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+        }
+
+        .paid-input-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 2px 6px;
+            margin-top: 4px;
+        }
+
+        .paid-input-container span {
+            font-size: 11px;
+            font-weight: 700;
+            color: #666;
+        }
+
+        .paid-input-container input[type="number"] {
+            border: none;
+            background: transparent;
+            font-size: 12px;
+            font-weight: 700;
+            width: 100%;
+            outline: none;
+            color: var(--text);
+            padding: 2px 0;
         }
 
         .main-layout {
@@ -466,7 +517,7 @@
     <header>
         <div class="brand-name">Mequetrefe Grupo Educativo</div>
         <div class="subtitle">Escuela de Verano — CEIP Salvador Vinuesa, Córdoba</div>
-        <div class="version-tag">v1.3.3</div>
+        <div class="version-tag">v1.4.1</div>
     </header>
 
     <div class="main-layout">
@@ -838,8 +889,23 @@
                     </div>
                 </div>
 
+                <div class="summary-item" id="paidSection">
+                    <h4>Cantidades abonadas</h4>
+                    <label class="paid-line" style="cursor: pointer;">
+                        <input type="checkbox" id="pay_matricula" onchange="calculate()">
+                        <span>Ya pagada matrícula (50,00 €)</span>
+                    </label>
+                    <div style="margin-top: 8px;">
+                        <span style="font-size: 11px; font-weight: 700; color: var(--primary);">OTRA CANTIDAD YA PAGADA:</span>
+                        <div class="paid-input-container">
+                            <span>€</span>
+                            <input type="number" id="pay_custom" placeholder="0,00" min="0" step="0.01" oninput="calculate()">
+                        </div>
+                    </div>
+                </div>
+
                 <div class="total-display">
-                    <span class="total-label">Total Familia</span>
+                    <span class="total-label" id="total_label">Pte. de cobro (Familia)</span>
                     <span class="total-amount" id="total_amount">210,00 €</span>
                 </div>
 
@@ -1037,7 +1103,20 @@
             total += subtotal2;
         }
 
-        document.getElementById('total_amount').textContent = formatCurrency(total);
+        // Deductions
+        const matriculaPaid = document.getElementById('pay_matricula').checked ? 50 : 0;
+        const customPaid = parseFloat(document.getElementById('pay_custom').value) || 0;
+        const totalPaid = matriculaPaid + customPaid;
+        
+        const finalTotal = Math.max(0, total - totalPaid);
+
+        document.getElementById('total_amount').textContent = formatCurrency(finalTotal);
+        
+        if (totalPaid > 0) {
+            document.getElementById('total_label').textContent = 'Pte. de cobro (Familia)';
+        } else {
+            document.getElementById('total_label').textContent = 'Total Familia';
+        }
     }
 
     document.querySelectorAll('input').forEach(input => {
@@ -1049,6 +1128,8 @@
         document.querySelectorAll('input').forEach(input => {
             if (input.id === 'ev1_mes') {
                 input.checked = true;
+            } else if (input.type === 'number') {
+                input.value = '';
             } else {
                 input.checked = false;
             }
