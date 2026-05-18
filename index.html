@@ -391,9 +391,9 @@
             .radio-grid { grid-template-columns: 1fr; }
         }
     </style>
-    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="manifest" href="./manifest.webmanifest">
     <meta name="theme-color" content="#f27d26">
-    <link rel="apple-touch-icon" href="/icon-192.png">
+    <link rel="apple-touch-icon" href="./icon-512.png">
 </head>
 <body>
 
@@ -933,7 +933,7 @@
 
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW failed', err));
+            navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW failed', err));
         });
     }
 
