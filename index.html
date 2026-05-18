@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Cuotas - Mequetrefe Grupo Educativo</title>
+    <style>
+        :root {
+            --primary: #f27d26;
+            --secondary: #00aeef;
+            --accent: #ffd700;
+            --bg: #fff9f2;
+            --text: #2d3436;
+            --text-muted: #636e72;
+            --border: #e2e8f0;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        header {
+            height: 120px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 0 15px;
+        }
+
+        @media (min-width: 900px) {
+            .main-layout {
+                grid-template-columns: 1fr 340px;
+                align-items: start;
+            }
+        }
+
+        .child-section {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .child-section.active {
+            border-color: var(--secondary);
+            box-shadow: var(--shadow);
+        }
+
+        .child-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .child-title span {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            color: var(--text);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        .form-group:last-child {
+            border-bottom: none;
+        }
+
+        .label-main {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .badge-included {
+            background: #E8F5E9;
+            color: #2E7D32;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 800;
+        }
+
+        .radio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .option-card {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            background: #fafafa;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option-card:hover {
+            border-color: var(--secondary);
+        }
+
+        .option-card.selected {
+            background: #f0faff;
+            border-color: var(--secondary);
+            border-width: 2px;
+        }
+
+        .option-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .option-card input {
+            cursor: pointer;
+        }
+
+        .option-info {
+            flex: 1;
+        }
+
+        .option-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text);
+            display: block;
+        }
+
+        .option-price {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            background: #ffffff;
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            margin-top: 4px;
+        }
+
+        .quantity-control button {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+            background: #f8f9fa;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .quantity-control button:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .quantity-control span {
+            font-size: 12px;
+            font-weight: 700;
+            min-width: 16px;
+            text-align: center;
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 10px;
+            background: #fcfcfc;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .checkbox-row input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        .checkbox-row span {
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .toggle-second {
+            background: var(--white);
+            border: 2px solid var(--secondary);
+            padding: 16px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            margin-bottom: 24px;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-second:hover {
+            background: #f0faff;
+        }
+
+        .toggle-second input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--secondary);
+        }
+
+        .toggle-second span {
+            font-weight: 800;
+            color: var(--secondary);
+            font-size: 14px;
+        }
+
+        .summary-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .summary-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        .summary-item {
+            margin-bottom: 20px;
+        }
+
+        .summary-item h4 {
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 4px;
+            color: var(--text-muted);
+        }
+
+        .summary-line.bold {
+            color: var(--text);
+            font-weight: 700;
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px dashed #eee;
+        }
+
+        .discount-badge {
+            background: var(--accent);
+            color: var(--text);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 800;
+            margin-top: 4px;
+            display: inline-block;
+        }
+
+        .total-display {
+            background: var(--text);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .total-amount {
+            font-size: 32px;
+            font-weight: 900;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .unit-pill {
+            font-size: 10px;
+            background: #eee;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #666;
+            margin-left: 5px;
+        }
+
+        .footer-note {
+            text-align: center;
+            padding: 20px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .hidden { display: none !important; }
+
+        @media (max-width: 480px) {
+            .radio-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <link rel="manifest" href="./manifest.webmanifest">
+    <meta name="theme-color" content="#f27d26">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="brand-name">Mequetrefe Grupo Educativo</div>
+        <div class="subtitle">Escuela de Verano — CEIP Salvador Vinuesa, Córdoba</div>
+    </header>
+
+    <div class="main-layout">
+        <div class="forms-column">
+            <!-- HIJO 1 -->
+            <div class="child-section active" id="child1Section">
+                <h2 class="child-title"><span>1</span> Primer hijo/a</h2>
+                
+                <div class="form-group">
+                    <label class="label-main">
+                        <span>Escuela de Verano (9-14h)</span>
+                        <span class="badge-included">Aula Matinal Incluida</span>
+                    </label>
+                    <div class="radio-grid">
+                        <div class="option-card" id="card_ev1_mes" onclick="selectOption('ev1', 'mes')">
+                            <div class="option-header">
+                                <input type="radio" name="ev1" id="ev1_mes" value="mes" checked onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Mes completo</span>
+                                    <span class="option-price">210 €</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_ev1_sem" onclick="selectOption('ev1', 'semana')">
+                            <div class="option-header">
+                                <input type="radio" name="ev1" id="ev1_sem" value="semana" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Por semana</span>
+                                    <span class="option-price">59 € / sem</span>
+                                </div>
+                            </div>
+                            <div class="quantity-control" onclick="event.stopPropagation()">
+                                <button type="button" onclick="changeQty('ev1', 'semana', -1)">-</button>
+                                <span id="qty_ev1_semana">1</span>
+                                <button type="button" onclick="changeQty('ev1', 'semana', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_ev1_dia" onclick="selectOption('ev1', 'dia')">
+                            <div class="option-header">
+                                <input type="radio" name="ev1" id="ev1_dia" value="dia" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Día suelto</span>
+                                    <span class="option-price">14 € / día</span>
+                                </div>
+                            </div>
+                            <div class="quantity-control" onclick="event.stopPropagation()">
+                                <button type="button" onclick="changeQty('ev1', 'dia', -1)">-</button>
+                                <span id="qty_ev1_dia">1</span>
+                                <button type="button" onclick="changeQty('ev1', 'dia', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_ev1_per" onclick="selectOption('ev1', 'periodo')">
+                            <div class="option-header">
+                                <input type="radio" name="ev1" id="ev1_per" value="periodo" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">23 Jun - 31 Jul</span>
+                                    <span class="option-price">261 €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-row" onclick="event.stopPropagation();">
+                        <input type="checkbox" id="am1_active" onchange="if(this.checked) document.getElementById('c1_active').checked = false; calculate()">
+                        <span>Servicio Aula de Mediodía (14-15h)</span>
+                    </label>
+                    <div class="radio-grid" id="am1_options">
+                        <div class="option-card" id="card_am1_mes" onclick="selectOption('am1', 'mes')">
+                            <div class="option-header">
+                                <input type="radio" name="am1" id="am1_mes" value="mes" checked onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Mes</span>
+                                    <span class="option-price">40 €</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_am1_sem" onclick="selectOption('am1', 'semana')">
+                            <div class="option-header">
+                                <input type="radio" name="am1" id="am1_sem" value="semana" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Semana</span>
+                                    <span class="option-price">10 € / sem</span>
+                                </div>
+                            </div>
+                            <div class="quantity-control" onclick="event.stopPropagation()">
+                                <button type="button" onclick="changeQty('am1', 'semana', -1)">-</button>
+                                <span id="qty_am1_semana">1</span>
+                                <button type="button" onclick="changeQty('am1', 'semana', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_am1_per" onclick="selectOption('am1', 'periodo')">
+                            <div class="option-header">
+                                <input type="radio" name="am1" id="am1_per" value="periodo" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Completo</span>
+                                    <span class="option-price">47 €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-row" onclick="event.stopPropagation();">
+                        <input type="checkbox" id="c1_active" onchange="if(this.checked) document.getElementById('am1_active').checked = false; calculate()">
+                        <span>Servicio Comedor (14-15:30h)</span>
+                    </label>
+                    <div class="radio-grid" id="c1_options">
+                        <div class="option-card" id="card_c1_mes" onclick="selectOption('c1', 'mes')">
+                            <div class="option-header">
+                                <input type="radio" name="c1" id="c1_mes" value="mes" checked onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Mes</span>
+                                    <span class="option-price">175 €</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_c1_sem" onclick="selectOption('c1', 'semana')">
+                            <div class="option-header">
+                                <input type="radio" name="c1" id="c1_sem" value="semana" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Semana</span>
+                                    <span class="option-price">40 € / sem</span>
+                                </div>
+                            </div>
+                            <div class="quantity-control" onclick="event.stopPropagation()">
+                                <button type="button" onclick="changeQty('c1', 'semana', -1)">-</button>
+                                <span id="qty_c1_semana">1</span>
+                                <button type="button" onclick="changeQty('c1', 'semana', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_c1_dia" onclick="selectOption('c1', 'dia')">
+                            <div class="option-header">
+                                <input type="radio" name="c1" id="c1_dia" value="dia" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Día</span>
+                                    <span class="option-price">8,50 € / día</span>
+                                </div>
+                            </div>
+                            <div class="quantity-control" onclick="event.stopPropagation()">
+                                <button type="button" onclick="changeQty('c1', 'dia', -1)">-</button>
+                                <span id="qty_c1_dia">1</span>
+                                <button type="button" onclick="changeQty('c1', 'dia', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_c1_per" onclick="selectOption('c1', 'periodo')">
+                            <div class="option-header">
+                                <input type="radio" name="c1" id="c1_per" value="periodo" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Completo</span>
+                                    <span class="option-price">215 €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <label class="toggle-second" id="toggleSecondContainer">
+                <input type="checkbox" id="secondChildToggle" onchange="calculate()">
+                <span>Inscribir también a un segundo hijo/a (descuento hermano)</span>
+            </label>
+
+            <!-- HIJO 2 -->
+            <div class="child-section hidden" id="child2Section">
+                <h2 class="child-title"><span>2</span> Segundo hijo/a</h2>
+                
+                <div class="form-group">
+                    <label class="label-main">
+                        <span>Escuela de Verano (9-14h)</span>
+                        <span class="badge-included">Aula Matinal Incluida</span>
+                    </label>
+                    <div class="radio-grid">
+                        <div class="option-card" id="card_ev2_mes" onclick="selectOption('ev2', 'mes')">
+                            <div class="option-header">
+                                <input type="radio" name="ev2" id="ev2_mes" value="mes" checked onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Mes completo</span>
+                                    <span class="option-price">210 €</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_ev2_sem" onclick="selectOption('ev2', 'semana')">
+                            <div class="option-header">
+                                <input type="radio" name="ev2" id="ev2_sem" value="semana" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Por semana</span>
+                                    <span class="option-price">59 € / sem</span>
+                                </div>
+                            </div>
+                            <div class="quantity-control" onclick="event.stopPropagation()">
+                                <button type="button" onclick="changeQty('ev2', 'semana', -1)">-</button>
+                                <span id="qty_ev2_semana">1</span>
+                                <button type="button" onclick="changeQty('ev2', 'semana', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_ev2_dia" onclick="selectOption('ev2', 'dia')">
+                            <div class="option-header">
+                                <input type="radio" name="ev2" id="ev2_dia" value="dia" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Día suelto</span>
+                                    <span class="option-price">14 € / día</span>
+                                </div>
+                            </div>
+                            <div class="quantity-control" onclick="event.stopPropagation()">
+                                <button type="button" onclick="changeQty('ev2', 'dia', -1)">-</button>
+                                <span id="qty_ev2_dia">1</span>
+                                <button type="button" onclick="changeQty('ev2', 'dia', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_ev2_per" onclick="selectOption('ev2', 'periodo')">
+                            <div class="option-header">
+                                <input type="radio" name="ev2" id="ev2_per" value="periodo" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">23 Jun - 31 Jul</span>
+                                    <span class="option-price">261 €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-row" onclick="event.stopPropagation();">
+                        <input type="checkbox" id="am2_active" onchange="if(this.checked) document.getElementById('c2_active').checked = false; calculate()">
+                        <span>Servicio Aula de Mediodía (14-15h)</span>
+                    </label>
+                    <div class="radio-grid" id="am2_options">
+                        <div class="option-card" id="card_am2_mes" onclick="selectOption('am2', 'mes')">
+                            <div class="option-header">
+                                <input type="radio" name="am2" id="am2_mes" value="mes" checked onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Mes</span>
+                                    <span class="option-price">40 €</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_am2_sem" onclick="selectOption('am2', 'semana')">
+                            <div class="option-header">
+                                <input type="radio" name="am2" id="am2_sem" value="semana" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Semana</span>
+                                    <span class="option-price">10 € / sem</span>
+                                </div>
+                            </div>
+                            <div class="quantity-control" onclick="event.stopPropagation()">
+                                <button type="button" onclick="changeQty('am2', 'semana', -1)">-</button>
+                                <span id="qty_am2_semana">1</span>
+                                <button type="button" onclick="changeQty('am2', 'semana', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_am2_per" onclick="selectOption('am2', 'periodo')">
+                            <div class="option-header">
+                                <input type="radio" name="am2" id="am2_per" value="periodo" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Completo</span>
+                                    <span class="option-price">47 €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-row" onclick="event.stopPropagation();">
+                        <input type="checkbox" id="c2_active" onchange="if(this.checked) document.getElementById('am2_active').checked = false; calculate()">
+                        <span>Servicio Comedor (14-15:30h)</span>
+                    </label>
+                    <div class="radio-grid" id="c2_options">
+                        <div class="option-card" id="card_c2_mes" onclick="selectOption('c2', 'mes')">
+                            <div class="option-header">
+                                <input type="radio" name="c2" id="c2_mes" value="mes" checked onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Mes</span>
+                                    <span class="option-price">175 €</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_c2_sem" onclick="selectOption('c2', 'semana')">
+                            <div class="option-header">
+                                <input type="radio" name="c2" id="c2_sem" value="semana" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Semana</span>
+                                    <span class="option-price">40 € / sem</span>
+                                </div>
+                            </div>
+                            <div class="quantity-control" onclick="event.stopPropagation()">
+                                <button type="button" onclick="changeQty('c2', 'semana', -1)">-</button>
+                                <span id="qty_c2_semana">1</span>
+                                <button type="button" onclick="changeQty('c2', 'semana', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_c2_dia" onclick="selectOption('c2', 'dia')">
+                            <div class="option-header">
+                                <input type="radio" name="c2" id="c2_dia" value="dia" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Día</span>
+                                    <span class="option-price">8,50 € / día</span>
+                                </div>
+                            </div>
+                            <div class="quantity-control" onclick="event.stopPropagation()">
+                                <button type="button" onclick="changeQty('c2', 'dia', -1)">-</button>
+                                <span id="qty_c2_dia">1</span>
+                                <button type="button" onclick="changeQty('c2', 'dia', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="option-card" id="card_c2_per" onclick="selectOption('c2', 'periodo')">
+                            <div class="option-header">
+                                <input type="radio" name="c2" id="c2_per" value="periodo" onchange="calculate()">
+                                <div class="option-info">
+                                    <span class="option-name">Completo</span>
+                                    <span class="option-price">215 €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="summary-column">
+            <div class="summary-card">
+                <h3 class="summary-title">Resumen de Costes</h3>
+                
+                <!-- Child 1 Summary -->
+                <div class="summary-item" id="summaryChild1">
+                    <h4>Primer hijo/a</h4>
+                    <div class="summary-line">
+                        <span>Escuela de Verano:</span>
+                        <span id="sum_ev1">210,00 €</span>
+                    </div>
+                    <div class="summary-line" id="sum_am1_line">
+                        <span>Aula de Mediodía:</span>
+                        <span id="sum_am1">No seleccionado</span>
+                    </div>
+                    <div class="summary-line" id="sum_c1_line">
+                        <span>Comedor:</span>
+                        <span id="sum_c1">No seleccionado</span>
+                    </div>
+                    <div class="summary-subtotal">
+                        <span>Subtotal:</span>
+                        <span id="sub_c1">210,00 €</span>
+                    </div>
+                </div>
+
+                <!-- Child 2 Summary -->
+                <div class="summary-item hidden" id="summaryChild2">
+                    <h4>Segundo hijo/a</h4>
+                    <div class="summary-line">
+                        <span>Escuela de Verano:</span>
+                        <span id="sum_ev2">210,00 €</span>
+                    </div>
+                    <div id="discount_ev2_container" class="hidden" style="margin-bottom: 10px;">
+                        <div class="discount-badge" id="discount_ev2_label">Descuento hermano/a –10%</div>
+                    </div>
+                    <div class="summary-line" id="sum_am2_line">
+                        <span>Aula de Mediodía:</span>
+                        <span id="sum_am2">No seleccionado</span>
+                    </div>
+                    <div class="summary-line" id="sum_c2_line">
+                        <span>Comedor:</span>
+                        <span id="sum_c2">No seleccionado</span>
+                    </div>
+                    <div class="summary-subtotal">
+                        <span>Subtotal:</span>
+                        <span id="sub_c2">189,00 €</span>
+                    </div>
+                </div>
+
+                <div class="total-display">
+                    <span class="total-label">Total Familia</span>
+                    <span class="total-amount" id="total_amount">210,00 €</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <div class="footer-note">
+        Mequetrefe Grupo Educativo &copy; 2024. Escuela de Verano CEIP Salvador Vinuesa.
+    </div>
+</div>
+
+<script>
+    const prices = {
+        ev: { mes: 210, semana: 59, dia: 14, periodo: 261 },
+        am: { mes: 40, semana: 10, periodo: 47 },
+        c: { mes: 175, semana: 40, dia: 8.5, periodo: 215 }
+    };
+
+    const quantities = {
+        ev1: { semana: 1, dia: 1 },
+        ev2: { semana: 1, dia: 1 },
+        am1: { semana: 1 },
+        am2: { semana: 1 },
+        c1: { semana: 1, dia: 1 },
+        c2: { semana: 1, dia: 1 }
+    };
+
+    const DISCOUNT_RATE = 0.1;
+
+    function formatCurrency(amount) {
+        return amount.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }) + ' €';
+    }
+
+    function selectOption(group, type) {
+        const input = document.getElementById(`${group}_${type}`);
+        if (input) {
+            input.checked = true;
+            calculate();
+        }
+    }
+
+    function changeQty(group, type, delta) {
+        const current = quantities[group][type];
+        const next = Math.max(1, current + delta);
+        quantities[group][type] = next;
+        document.getElementById(`qty_${group}_${type}`).textContent = next;
+        calculate();
+    }
+
+    function calculate() {
+        const secondActive = document.getElementById('secondChildToggle').checked;
+        const child2Section = document.getElementById('child2Section');
+        const summaryChild2 = document.getElementById('summaryChild2');
+
+        if (secondActive) {
+            child2Section.classList.remove('hidden');
+            summaryChild2.classList.remove('hidden');
+        } else {
+            child2Section.classList.add('hidden');
+            summaryChild2.classList.add('hidden');
+        }
+
+        // Helper to update selection cards style
+        const updateCards = (name) => {
+            const radio = document.querySelector(`input[name="${name}"]:checked`);
+            document.querySelectorAll(`.option-card[id^="card_${name}_"]`).forEach(card => {
+                card.classList.remove('selected');
+            });
+            if (radio) {
+                document.getElementById(`card_${name}_${radio.value}`).classList.add('selected');
+            }
+        };
+
+        ['ev1', 'ev2', 'am1', 'am2', 'c1', 'c2'].forEach(updateCards);
+
+        // Visibility of options grids
+        ['am1', 'am2', 'c1', 'c2'].forEach(id => {
+            const el = document.getElementById(`${id}_active`);
+            const options = document.getElementById(`${id}_options`);
+            if (el && options) {
+                options.style.display = el.checked ? 'grid' : 'none';
+            }
+        });
+
+        // Helper to get price with qty
+        const getPrice = (name, category) => {
+            const radio = document.querySelector(`input[name="${name}"]:checked`);
+            if (!radio) return { total: 0, type: '', qty: 1 };
+            const type = radio.value;
+            const base = prices[category][type];
+            const qty = quantities[name][type] || 1;
+            return { total: base * qty, type, qty, base };
+        };
+
+        // Child 1
+        const res_ev1 = getPrice('ev1', 'ev');
+        const am1Active = document.getElementById('am1_active').checked;
+        const res_am1 = am1Active ? getPrice('am1', 'am') : { total: 0 };
+        const c1Active = document.getElementById('c1_active').checked;
+        const res_c1 = c1Active ? getPrice('c1', 'c') : { total: 0 };
+        
+        let subtotal1 = res_ev1.total + res_am1.total + res_c1.total;
+
+        document.getElementById('sum_ev1').innerHTML = formatCurrency(res_ev1.total) + 
+            (res_ev1.qty > 1 ? `<span class="unit-pill">${res_ev1.qty} ${res_ev1.type === 'semana' ? 'sem.' : 'días'}</span>` : '');
+        document.getElementById('sum_am1').innerHTML = am1Active ? formatCurrency(res_am1.total) + 
+            (res_am1.qty > 1 ? `<span class="unit-pill">${res_am1.qty} sem.</span>` : '') : 'No seleccionado';
+        document.getElementById('sum_c1').innerHTML = c1Active ? formatCurrency(res_c1.total) + 
+            (res_c1.qty > 1 ? `<span class="unit-pill">${res_c1.qty} ${res_c1.type === 'semana' ? 'sem.' : 'días'}</span>` : '') : 'No seleccionado';
+        document.getElementById('sub_c1').textContent = formatCurrency(subtotal1);
+
+        // Child 2
+        let total = subtotal1;
+        if (secondActive) {
+            const res_ev2 = getPrice('ev2', 'ev');
+            let discount = 0;
+            if (res_ev2.type !== 'dia') {
+                discount = res_ev2.total * DISCOUNT_RATE;
+            }
+            let sub2_ev_final = res_ev2.total - discount;
+            
+            const am2Active = document.getElementById('am2_active').checked;
+            const res_am2 = am2Active ? getPrice('am2', 'am') : { total: 0 };
+            const c2Active = document.getElementById('c2_active').checked;
+            const res_c2 = c2Active ? getPrice('c2', 'c') : { total: 0 };
+
+            let subtotal2 = sub2_ev_final + res_am2.total + res_c2.total;
+
+            document.getElementById('sum_ev2').innerHTML = formatCurrency(res_ev2.total) + 
+                (res_ev2.qty > 1 ? `<span class="unit-pill">${res_ev2.qty} ${res_ev2.type === 'semana' ? 'sem.' : 'días'}</span>` : '');
+            
+            if (discount > 0) {
+                document.getElementById('discount_ev2_container').classList.remove('hidden');
+                document.getElementById('discount_ev2_label').textContent = 'Descuento hermano/a –10%: –' + formatCurrency(discount);
+            } else {
+                document.getElementById('discount_ev2_container').classList.add('hidden');
+            }
+            
+            document.getElementById('sum_am2').innerHTML = am2Active ? formatCurrency(res_am2.total) + 
+                (res_am2.qty > 1 ? `<span class="unit-pill">${res_am2.qty} sem.</span>` : '') : 'No seleccionado';
+            document.getElementById('sum_c2').innerHTML = c2Active ? formatCurrency(res_c2.total) + 
+                (res_c2.qty > 1 ? `<span class="unit-pill">${res_c2.qty} ${res_c2.type === 'semana' ? 'sem.' : 'días'}</span>` : '') : 'No seleccionado';
+            document.getElementById('sub_c2').textContent = formatCurrency(subtotal2);
+
+            total += subtotal2;
+        }
+
+        document.getElementById('total_amount').textContent = formatCurrency(total);
+    }
+
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('change', calculate);
+    });
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW failed', err));
+        });
+    }
+
+    calculate();
+</script>
+
+</body>
+</html>
