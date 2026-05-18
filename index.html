@@ -414,7 +414,7 @@
     <header>
         <div class="brand-name">Mequetrefe Grupo Educativo</div>
         <div class="subtitle">Escuela de Verano — CEIP Salvador Vinuesa, Córdoba</div>
-        <div class="version-tag">v1.2.3</div>
+        <div class="version-tag">v1.2.5</div>
     </header>
 
     <div class="main-layout">
@@ -438,7 +438,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="option-card" id="card_ev1_sem" onclick="selectOption('ev1', 'semana')">
+                        <div class="option-card" id="card_ev1_sem" onclick="selectOption('ev1', 'sem')">
                             <div class="option-header">
                                 <input type="checkbox" id="ev1_sem" value="semana" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
@@ -447,9 +447,9 @@
                                 </div>
                             </div>
                             <div class="quantity-control" onclick="event.stopPropagation()">
-                                <button type="button" onclick="changeQty('ev1', 'semana', -1)">-</button>
-                                <span id="qty_ev1_semana">1</span>
-                                <button type="button" onclick="changeQty('ev1', 'semana', 1)">+</button>
+                                <button type="button" onclick="changeQty('ev1', 'sem', -1)">-</button>
+                                <span id="qty_ev1_sem">1</span>
+                                <button type="button" onclick="changeQty('ev1', 'sem', 1)">+</button>
                             </div>
                         </div>
                         <div class="option-card" id="card_ev1_dia" onclick="selectOption('ev1', 'dia')">
@@ -466,7 +466,7 @@
                                 <button type="button" onclick="changeQty('ev1', 'dia', 1)">+</button>
                             </div>
                         </div>
-                        <div class="option-card" id="card_ev1_per" onclick="selectOption('ev1', 'periodo')">
+                        <div class="option-card" id="card_ev1_per" onclick="selectOption('ev1', 'per')">
                             <div class="option-header">
                                 <input type="checkbox" id="ev1_per" value="periodo" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
@@ -493,7 +493,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="option-card" id="card_am1_sem" onclick="selectOption('am1', 'semana')">
+                        <div class="option-card" id="card_am1_sem" onclick="selectOption('am1', 'sem')">
                             <div class="option-header">
                                 <input type="checkbox" id="am1_sem" value="semana" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
@@ -502,12 +502,12 @@
                                 </div>
                             </div>
                             <div class="quantity-control" onclick="event.stopPropagation()">
-                                <button type="button" onclick="changeQty('am1', 'semana', -1)">-</button>
-                                <span id="qty_am1_semana">1</span>
-                                <button type="button" onclick="changeQty('am1', 'semana', 1)">+</button>
+                                <button type="button" onclick="changeQty('am1', 'sem', -1)">-</button>
+                                <span id="qty_am1_sem">1</span>
+                                <button type="button" onclick="changeQty('am1', 'sem', 1)">+</button>
                             </div>
                         </div>
-                        <div class="option-card" id="card_am1_per" onclick="selectOption('am1', 'periodo')">
+                        <div class="option-card" id="card_am1_per" onclick="selectOption('am1', 'per')">
                             <div class="option-header">
                                 <input type="checkbox" id="am1_per" value="periodo" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
@@ -534,7 +534,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="option-card" id="card_c1_sem" onclick="selectOption('c1', 'semana')">
+                        <div class="option-card" id="card_c1_sem" onclick="selectOption('c1', 'sem')">
                             <div class="option-header">
                                 <input type="checkbox" id="c1_sem" value="semana" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
@@ -543,9 +543,9 @@
                                 </div>
                             </div>
                             <div class="quantity-control" onclick="event.stopPropagation()">
-                                <button type="button" onclick="changeQty('c1', 'semana', -1)">-</button>
-                                <span id="qty_c1_semana">1</span>
-                                <button type="button" onclick="changeQty('c1', 'semana', 1)">+</button>
+                                <button type="button" onclick="changeQty('c1', 'sem', -1)">-</button>
+                                <span id="qty_c1_sem">1</span>
+                                <button type="button" onclick="changeQty('c1', 'sem', 1)">+</button>
                             </div>
                         </div>
                         <div class="option-card" id="card_c1_dia" onclick="selectOption('c1', 'dia')">
@@ -562,7 +562,7 @@
                                 <button type="button" onclick="changeQty('c1', 'dia', 1)">+</button>
                             </div>
                         </div>
-                        <div class="option-card" id="card_c1_per" onclick="selectOption('c1', 'periodo')">
+                        <div class="option-card" id="card_c1_per" onclick="selectOption('c1', 'per')">
                             <div class="option-header">
                                 <input type="checkbox" id="c1_per" value="periodo" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
@@ -599,7 +599,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="option-card" id="card_ev2_sem" onclick="selectOption('ev2', 'semana')">
+                        <div class="option-card" id="card_ev2_sem" onclick="selectOption('ev2', 'sem')">
                             <div class="option-header">
                                 <input type="checkbox" id="ev2_sem" value="semana" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
@@ -608,9 +608,9 @@
                                 </div>
                             </div>
                             <div class="quantity-control" onclick="event.stopPropagation()">
-                                <button type="button" onclick="changeQty('ev2', 'semana', -1)">-</button>
-                                <span id="qty_ev2_semana">1</span>
-                                <button type="button" onclick="changeQty('ev2', 'semana', 1)">+</button>
+                                <button type="button" onclick="changeQty('ev2', 'sem', -1)">-</button>
+                                <span id="qty_ev2_sem">1</span>
+                                <button type="button" onclick="changeQty('ev2', 'sem', 1)">+</button>
                             </div>
                         </div>
                         <div class="option-card" id="card_ev2_dia" onclick="selectOption('ev2', 'dia')">
@@ -627,7 +627,7 @@
                                 <button type="button" onclick="changeQty('ev2', 'dia', 1)">+</button>
                             </div>
                         </div>
-                        <div class="option-card" id="card_ev2_per" onclick="selectOption('ev2', 'periodo')">
+                        <div class="option-card" id="card_ev2_per" onclick="selectOption('ev2', 'per')">
                             <div class="option-header">
                                 <input type="checkbox" id="ev2_per" value="periodo" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
@@ -654,7 +654,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="option-card" id="card_am2_sem" onclick="selectOption('am2', 'semana')">
+                        <div class="option-card" id="card_am2_sem" onclick="selectOption('am2', 'sem')">
                             <div class="option-header">
                                 <input type="checkbox" id="am2_sem" value="semana" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
@@ -663,12 +663,12 @@
                                 </div>
                             </div>
                             <div class="quantity-control" onclick="event.stopPropagation()">
-                                <button type="button" onclick="changeQty('am2', 'semana', -1)">-</button>
-                                <span id="qty_am2_semana">1</span>
-                                <button type="button" onclick="changeQty('am2', 'semana', 1)">+</button>
+                                <button type="button" onclick="changeQty('am2', 'sem', -1)">-</button>
+                                <span id="qty_am2_sem">1</span>
+                                <button type="button" onclick="changeQty('am2', 'sem', 1)">+</button>
                             </div>
                         </div>
-                        <div class="option-card" id="card_am2_per" onclick="selectOption('am2', 'periodo')">
+                        <div class="option-card" id="card_am2_per" onclick="selectOption('am2', 'per')">
                             <div class="option-header">
                                 <input type="checkbox" id="am2_per" value="periodo" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
@@ -695,7 +695,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="option-card" id="card_c2_sem" onclick="selectOption('c2', 'semana')">
+                        <div class="option-card" id="card_c2_sem" onclick="selectOption('c2', 'sem')">
                             <div class="option-header">
                                 <input type="checkbox" id="c2_sem" value="semana" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
@@ -704,9 +704,9 @@
                                 </div>
                             </div>
                             <div class="quantity-control" onclick="event.stopPropagation()">
-                                <button type="button" onclick="changeQty('c2', 'semana', -1)">-</button>
-                                <span id="qty_c2_semana">1</span>
-                                <button type="button" onclick="changeQty('c2', 'semana', 1)">+</button>
+                                <button type="button" onclick="changeQty('c2', 'sem', -1)">-</button>
+                                <span id="qty_c2_sem">1</span>
+                                <button type="button" onclick="changeQty('c2', 'sem', 1)">+</button>
                             </div>
                         </div>
                         <div class="option-card" id="card_c2_dia" onclick="selectOption('c2', 'dia')">
@@ -723,7 +723,7 @@
                                 <button type="button" onclick="changeQty('c2', 'dia', 1)">+</button>
                             </div>
                         </div>
-                        <div class="option-card" id="card_c2_per" onclick="selectOption('c2', 'periodo')">
+                        <div class="option-card" id="card_c2_per" onclick="selectOption('c2', 'per')">
                             <div class="option-header">
                                 <input type="checkbox" id="c2_per" value="periodo" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
