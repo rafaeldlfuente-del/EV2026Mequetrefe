@@ -414,7 +414,7 @@
     <header>
         <div class="brand-name">Mequetrefe Grupo Educativo</div>
         <div class="subtitle">Escuela de Verano — CEIP Salvador Vinuesa, Córdoba</div>
-        <div class="version-tag">v1.2.1</div>
+        <div class="version-tag">v1.2.3</div>
     </header>
 
     <div class="main-layout">
@@ -431,7 +431,7 @@
                     <div class="radio-grid">
                         <div class="option-card" id="card_ev1_mes" onclick="selectOption('ev1', 'mes')">
                             <div class="option-header">
-                                <input type="checkbox" id="ev1_mes" value="mes" checked onchange="calculate()">
+                                <input type="checkbox" id="ev1_mes" value="mes" checked onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Mes completo</span>
                                     <span class="option-price">210 €</span>
@@ -440,7 +440,7 @@
                         </div>
                         <div class="option-card" id="card_ev1_sem" onclick="selectOption('ev1', 'semana')">
                             <div class="option-header">
-                                <input type="checkbox" id="ev1_sem" value="semana" onchange="calculate()">
+                                <input type="checkbox" id="ev1_sem" value="semana" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Por semana</span>
                                     <span class="option-price">59 € / sem</span>
@@ -454,7 +454,7 @@
                         </div>
                         <div class="option-card" id="card_ev1_dia" onclick="selectOption('ev1', 'dia')">
                             <div class="option-header">
-                                <input type="checkbox" id="ev1_dia" value="dia" onchange="calculate()">
+                                <input type="checkbox" id="ev1_dia" value="dia" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Día suelto</span>
                                     <span class="option-price">14 € / día</span>
@@ -468,7 +468,7 @@
                         </div>
                         <div class="option-card" id="card_ev1_per" onclick="selectOption('ev1', 'periodo')">
                             <div class="option-header">
-                                <input type="checkbox" id="ev1_per" value="periodo" onchange="calculate()">
+                                <input type="checkbox" id="ev1_per" value="periodo" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">23 Jun - 31 Jul</span>
                                     <span class="option-price">261 €</span>
@@ -486,7 +486,7 @@
                     <div class="radio-grid" id="am1_options">
                         <div class="option-card" id="card_am1_mes" onclick="selectOption('am1', 'mes')">
                             <div class="option-header">
-                                <input type="checkbox" id="am1_mes" value="mes" checked onchange="calculate()">
+                                <input type="checkbox" id="am1_mes" value="mes" checked onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Mes</span>
                                     <span class="option-price">40 €</span>
@@ -495,7 +495,7 @@
                         </div>
                         <div class="option-card" id="card_am1_sem" onclick="selectOption('am1', 'semana')">
                             <div class="option-header">
-                                <input type="checkbox" id="am1_sem" value="semana" onchange="calculate()">
+                                <input type="checkbox" id="am1_sem" value="semana" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Semana</span>
                                     <span class="option-price">10 € / sem</span>
@@ -509,7 +509,7 @@
                         </div>
                         <div class="option-card" id="card_am1_per" onclick="selectOption('am1', 'periodo')">
                             <div class="option-header">
-                                <input type="checkbox" id="am1_per" value="periodo" onchange="calculate()">
+                                <input type="checkbox" id="am1_per" value="periodo" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Completo</span>
                                     <span class="option-price">47 €</span>
@@ -527,7 +527,7 @@
                     <div class="radio-grid" id="c1_options">
                         <div class="option-card" id="card_c1_mes" onclick="selectOption('c1', 'mes')">
                             <div class="option-header">
-                                <input type="checkbox" id="c1_mes" value="mes" checked onchange="calculate()">
+                                <input type="checkbox" id="c1_mes" value="mes" checked onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Mes</span>
                                     <span class="option-price">175 €</span>
@@ -536,7 +536,7 @@
                         </div>
                         <div class="option-card" id="card_c1_sem" onclick="selectOption('c1', 'semana')">
                             <div class="option-header">
-                                <input type="checkbox" id="c1_sem" value="semana" onchange="calculate()">
+                                <input type="checkbox" id="c1_sem" value="semana" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Semana</span>
                                     <span class="option-price">40 € / sem</span>
@@ -550,7 +550,7 @@
                         </div>
                         <div class="option-card" id="card_c1_dia" onclick="selectOption('c1', 'dia')">
                             <div class="option-header">
-                                <input type="checkbox" id="c1_dia" value="dia" onchange="calculate()">
+                                <input type="checkbox" id="c1_dia" value="dia" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Día</span>
                                     <span class="option-price">8,50 € / día</span>
@@ -564,7 +564,7 @@
                         </div>
                         <div class="option-card" id="card_c1_per" onclick="selectOption('c1', 'periodo')">
                             <div class="option-header">
-                                <input type="checkbox" id="c1_per" value="periodo" onchange="calculate()">
+                                <input type="checkbox" id="c1_per" value="periodo" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Completo</span>
                                     <span class="option-price">215 €</span>
@@ -592,7 +592,7 @@
                     <div class="radio-grid">
                         <div class="option-card" id="card_ev2_mes" onclick="selectOption('ev2', 'mes')">
                             <div class="option-header">
-                                <input type="checkbox" id="ev2_mes" value="mes" checked onchange="calculate()">
+                                <input type="checkbox" id="ev2_mes" value="mes" checked onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Mes completo</span>
                                     <span class="option-price">210 €</span>
@@ -601,7 +601,7 @@
                         </div>
                         <div class="option-card" id="card_ev2_sem" onclick="selectOption('ev2', 'semana')">
                             <div class="option-header">
-                                <input type="checkbox" id="ev2_sem" value="semana" onchange="calculate()">
+                                <input type="checkbox" id="ev2_sem" value="semana" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Por semana</span>
                                     <span class="option-price">59 € / sem</span>
@@ -615,7 +615,7 @@
                         </div>
                         <div class="option-card" id="card_ev2_dia" onclick="selectOption('ev2', 'dia')">
                             <div class="option-header">
-                                <input type="checkbox" id="ev2_dia" value="dia" onchange="calculate()">
+                                <input type="checkbox" id="ev2_dia" value="dia" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Día suelto</span>
                                     <span class="option-price">14 € / día</span>
@@ -629,7 +629,7 @@
                         </div>
                         <div class="option-card" id="card_ev2_per" onclick="selectOption('ev2', 'periodo')">
                             <div class="option-header">
-                                <input type="checkbox" id="ev2_per" value="periodo" onchange="calculate()">
+                                <input type="checkbox" id="ev2_per" value="periodo" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">23 Jun - 31 Jul</span>
                                     <span class="option-price">261 €</span>
@@ -647,7 +647,7 @@
                     <div class="radio-grid" id="am2_options">
                         <div class="option-card" id="card_am2_mes" onclick="selectOption('am2', 'mes')">
                             <div class="option-header">
-                                <input type="checkbox" id="am2_mes" value="mes" checked onchange="calculate()">
+                                <input type="checkbox" id="am2_mes" value="mes" checked onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Mes</span>
                                     <span class="option-price">40 €</span>
@@ -656,7 +656,7 @@
                         </div>
                         <div class="option-card" id="card_am2_sem" onclick="selectOption('am2', 'semana')">
                             <div class="option-header">
-                                <input type="checkbox" id="am2_sem" value="semana" onchange="calculate()">
+                                <input type="checkbox" id="am2_sem" value="semana" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Semana</span>
                                     <span class="option-price">10 € / sem</span>
@@ -670,7 +670,7 @@
                         </div>
                         <div class="option-card" id="card_am2_per" onclick="selectOption('am2', 'periodo')">
                             <div class="option-header">
-                                <input type="checkbox" id="am2_per" value="periodo" onchange="calculate()">
+                                <input type="checkbox" id="am2_per" value="periodo" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Completo</span>
                                     <span class="option-price">47 €</span>
@@ -688,7 +688,7 @@
                     <div class="radio-grid" id="c2_options">
                         <div class="option-card" id="card_c2_mes" onclick="selectOption('c2', 'mes')">
                             <div class="option-header">
-                                <input type="checkbox" id="c2_mes" value="mes" checked onchange="calculate()">
+                                <input type="checkbox" id="c2_mes" value="mes" checked onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Mes</span>
                                     <span class="option-price">175 €</span>
@@ -697,7 +697,7 @@
                         </div>
                         <div class="option-card" id="card_c2_sem" onclick="selectOption('c2', 'semana')">
                             <div class="option-header">
-                                <input type="checkbox" id="c2_sem" value="semana" onchange="calculate()">
+                                <input type="checkbox" id="c2_sem" value="semana" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Semana</span>
                                     <span class="option-price">40 € / sem</span>
@@ -711,7 +711,7 @@
                         </div>
                         <div class="option-card" id="card_c2_dia" onclick="selectOption('c2', 'dia')">
                             <div class="option-header">
-                                <input type="checkbox" id="c2_dia" value="dia" onchange="calculate()">
+                                <input type="checkbox" id="c2_dia" value="dia" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Día</span>
                                     <span class="option-price">8,50 € / día</span>
@@ -725,7 +725,7 @@
                         </div>
                         <div class="option-card" id="card_c2_per" onclick="selectOption('c2', 'periodo')">
                             <div class="option-header">
-                                <input type="checkbox" id="c2_per" value="periodo" onchange="calculate()">
+                                <input type="checkbox" id="c2_per" value="periodo" onchange="calculate()" onclick="event.stopPropagation()">
                                 <div class="option-info">
                                     <span class="option-name">Completo</span>
                                     <span class="option-price">215 €</span>
@@ -841,6 +841,12 @@
         const next = Math.max(1, current + delta);
         quantities[group][type] = next;
         document.getElementById(`qty_${group}_${type}`).textContent = next;
+        
+        // Auto-check the option when quantity is changed
+        const input = document.getElementById(`${group}_${type}`);
+        if (input && !input.checked) {
+            input.checked = true;
+        }
         calculate();
     }
 
@@ -890,7 +896,8 @@
 
         // Helper to get price with qty for main services (can be multiple)
         const getMultiPrice = (prefix, category) => {
-            const checked = Array.from(document.querySelectorAll(`input[id^="${prefix}_"]:checked`));
+            const checked = Array.from(document.querySelectorAll(`input[id^="${prefix}_"]:checked`))
+                .filter(input => !input.id.endsWith('_active'));
             let total = 0;
             let breakdown = [];
             let discountableTotal = 0;
