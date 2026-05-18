@@ -1,0 +1,6 @@
+{
+  "name": "Calculadora de Cuotas - Mequetrefe",
+  "description": "Calculadora de costes para la escuela de verano del CEIP Salvador Vinuesa, Córdoba.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
