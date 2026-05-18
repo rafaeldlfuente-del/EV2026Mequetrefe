@@ -6,12 +6,12 @@
     <title>Calculadora de Cuotas - Mequetrefe Grupo Educativo</title>
     <style>
         :root {
-            --primary: #f27d26;
-            --secondary: #00aeef;
-            --accent: #ffd700;
-            --bg: #fff9f2;
-            --text: #2d3436;
-            --text-muted: #636e72;
+            --primary: #3a6ba5;
+            --secondary: #72bc43;
+            --accent: #72bc43;
+            --bg: #fcfcfc;
+            --text: #333333;
+            --text-muted: #555555;
             --border: #e2e8f0;
             --white: #ffffff;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -40,8 +40,9 @@
         }
 
         header {
-            height: 120px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            position: relative;
+            height: 140px;
+            background: linear-gradient(135deg, var(--primary) 0%, #2b5a91 40%, var(--secondary) 100%);
             color: white;
             padding: 20px;
             display: flex;
@@ -49,8 +50,9 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
             margin-bottom: 24px;
+            border-bottom: 4px solid var(--secondary);
         }
 
         .brand-name {
@@ -65,6 +67,17 @@
             opacity: 0.9;
             font-weight: 500;
             margin-top: 4px;
+        }
+
+        .version-tag {
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            font-size: 9px;
+            opacity: 0.6;
+            font-family: monospace;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .main-layout {
@@ -392,7 +405,7 @@
         }
     </style>
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="theme-color" content="#f27d26">
+    <meta name="theme-color" content="#3a6ba5">
     <link rel="apple-touch-icon" href="./icon-512.png">
 </head>
 <body>
@@ -401,6 +414,7 @@
     <header>
         <div class="brand-name">Mequetrefe Grupo Educativo</div>
         <div class="subtitle">Escuela de Verano — CEIP Salvador Vinuesa, Córdoba</div>
+        <div class="version-tag">v1.2.1</div>
     </header>
 
     <div class="main-layout">
@@ -417,7 +431,7 @@
                     <div class="radio-grid">
                         <div class="option-card" id="card_ev1_mes" onclick="selectOption('ev1', 'mes')">
                             <div class="option-header">
-                                <input type="radio" name="ev1" id="ev1_mes" value="mes" checked onchange="calculate()">
+                                <input type="checkbox" id="ev1_mes" value="mes" checked onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Mes completo</span>
                                     <span class="option-price">210 €</span>
@@ -426,7 +440,7 @@
                         </div>
                         <div class="option-card" id="card_ev1_sem" onclick="selectOption('ev1', 'semana')">
                             <div class="option-header">
-                                <input type="radio" name="ev1" id="ev1_sem" value="semana" onchange="calculate()">
+                                <input type="checkbox" id="ev1_sem" value="semana" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Por semana</span>
                                     <span class="option-price">59 € / sem</span>
@@ -440,7 +454,7 @@
                         </div>
                         <div class="option-card" id="card_ev1_dia" onclick="selectOption('ev1', 'dia')">
                             <div class="option-header">
-                                <input type="radio" name="ev1" id="ev1_dia" value="dia" onchange="calculate()">
+                                <input type="checkbox" id="ev1_dia" value="dia" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Día suelto</span>
                                     <span class="option-price">14 € / día</span>
@@ -454,7 +468,7 @@
                         </div>
                         <div class="option-card" id="card_ev1_per" onclick="selectOption('ev1', 'periodo')">
                             <div class="option-header">
-                                <input type="radio" name="ev1" id="ev1_per" value="periodo" onchange="calculate()">
+                                <input type="checkbox" id="ev1_per" value="periodo" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">23 Jun - 31 Jul</span>
                                     <span class="option-price">261 €</span>
@@ -466,13 +480,13 @@
 
                 <div class="form-group">
                     <label class="checkbox-row" onclick="event.stopPropagation();">
-                        <input type="checkbox" id="am1_active" onchange="if(this.checked) document.getElementById('c1_active').checked = false; calculate()">
+                        <input type="checkbox" id="am1_active" onchange="calculate()">
                         <span>Servicio Aula de Mediodía (14-15h)</span>
                     </label>
                     <div class="radio-grid" id="am1_options">
                         <div class="option-card" id="card_am1_mes" onclick="selectOption('am1', 'mes')">
                             <div class="option-header">
-                                <input type="radio" name="am1" id="am1_mes" value="mes" checked onchange="calculate()">
+                                <input type="checkbox" id="am1_mes" value="mes" checked onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Mes</span>
                                     <span class="option-price">40 €</span>
@@ -481,7 +495,7 @@
                         </div>
                         <div class="option-card" id="card_am1_sem" onclick="selectOption('am1', 'semana')">
                             <div class="option-header">
-                                <input type="radio" name="am1" id="am1_sem" value="semana" onchange="calculate()">
+                                <input type="checkbox" id="am1_sem" value="semana" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Semana</span>
                                     <span class="option-price">10 € / sem</span>
@@ -495,7 +509,7 @@
                         </div>
                         <div class="option-card" id="card_am1_per" onclick="selectOption('am1', 'periodo')">
                             <div class="option-header">
-                                <input type="radio" name="am1" id="am1_per" value="periodo" onchange="calculate()">
+                                <input type="checkbox" id="am1_per" value="periodo" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Completo</span>
                                     <span class="option-price">47 €</span>
@@ -507,13 +521,13 @@
 
                 <div class="form-group">
                     <label class="checkbox-row" onclick="event.stopPropagation();">
-                        <input type="checkbox" id="c1_active" onchange="if(this.checked) document.getElementById('am1_active').checked = false; calculate()">
+                        <input type="checkbox" id="c1_active" onchange="calculate()">
                         <span>Servicio Comedor (14-15:30h)</span>
                     </label>
                     <div class="radio-grid" id="c1_options">
                         <div class="option-card" id="card_c1_mes" onclick="selectOption('c1', 'mes')">
                             <div class="option-header">
-                                <input type="radio" name="c1" id="c1_mes" value="mes" checked onchange="calculate()">
+                                <input type="checkbox" id="c1_mes" value="mes" checked onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Mes</span>
                                     <span class="option-price">175 €</span>
@@ -522,7 +536,7 @@
                         </div>
                         <div class="option-card" id="card_c1_sem" onclick="selectOption('c1', 'semana')">
                             <div class="option-header">
-                                <input type="radio" name="c1" id="c1_sem" value="semana" onchange="calculate()">
+                                <input type="checkbox" id="c1_sem" value="semana" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Semana</span>
                                     <span class="option-price">40 € / sem</span>
@@ -536,7 +550,7 @@
                         </div>
                         <div class="option-card" id="card_c1_dia" onclick="selectOption('c1', 'dia')">
                             <div class="option-header">
-                                <input type="radio" name="c1" id="c1_dia" value="dia" onchange="calculate()">
+                                <input type="checkbox" id="c1_dia" value="dia" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Día</span>
                                     <span class="option-price">8,50 € / día</span>
@@ -550,7 +564,7 @@
                         </div>
                         <div class="option-card" id="card_c1_per" onclick="selectOption('c1', 'periodo')">
                             <div class="option-header">
-                                <input type="radio" name="c1" id="c1_per" value="periodo" onchange="calculate()">
+                                <input type="checkbox" id="c1_per" value="periodo" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Completo</span>
                                     <span class="option-price">215 €</span>
@@ -578,7 +592,7 @@
                     <div class="radio-grid">
                         <div class="option-card" id="card_ev2_mes" onclick="selectOption('ev2', 'mes')">
                             <div class="option-header">
-                                <input type="radio" name="ev2" id="ev2_mes" value="mes" checked onchange="calculate()">
+                                <input type="checkbox" id="ev2_mes" value="mes" checked onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Mes completo</span>
                                     <span class="option-price">210 €</span>
@@ -587,7 +601,7 @@
                         </div>
                         <div class="option-card" id="card_ev2_sem" onclick="selectOption('ev2', 'semana')">
                             <div class="option-header">
-                                <input type="radio" name="ev2" id="ev2_sem" value="semana" onchange="calculate()">
+                                <input type="checkbox" id="ev2_sem" value="semana" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Por semana</span>
                                     <span class="option-price">59 € / sem</span>
@@ -601,7 +615,7 @@
                         </div>
                         <div class="option-card" id="card_ev2_dia" onclick="selectOption('ev2', 'dia')">
                             <div class="option-header">
-                                <input type="radio" name="ev2" id="ev2_dia" value="dia" onchange="calculate()">
+                                <input type="checkbox" id="ev2_dia" value="dia" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Día suelto</span>
                                     <span class="option-price">14 € / día</span>
@@ -615,7 +629,7 @@
                         </div>
                         <div class="option-card" id="card_ev2_per" onclick="selectOption('ev2', 'periodo')">
                             <div class="option-header">
-                                <input type="radio" name="ev2" id="ev2_per" value="periodo" onchange="calculate()">
+                                <input type="checkbox" id="ev2_per" value="periodo" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">23 Jun - 31 Jul</span>
                                     <span class="option-price">261 €</span>
@@ -627,13 +641,13 @@
 
                 <div class="form-group">
                     <label class="checkbox-row" onclick="event.stopPropagation();">
-                        <input type="checkbox" id="am2_active" onchange="if(this.checked) document.getElementById('c2_active').checked = false; calculate()">
+                        <input type="checkbox" id="am2_active" onchange="calculate()">
                         <span>Servicio Aula de Mediodía (14-15h)</span>
                     </label>
                     <div class="radio-grid" id="am2_options">
                         <div class="option-card" id="card_am2_mes" onclick="selectOption('am2', 'mes')">
                             <div class="option-header">
-                                <input type="radio" name="am2" id="am2_mes" value="mes" checked onchange="calculate()">
+                                <input type="checkbox" id="am2_mes" value="mes" checked onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Mes</span>
                                     <span class="option-price">40 €</span>
@@ -642,7 +656,7 @@
                         </div>
                         <div class="option-card" id="card_am2_sem" onclick="selectOption('am2', 'semana')">
                             <div class="option-header">
-                                <input type="radio" name="am2" id="am2_sem" value="semana" onchange="calculate()">
+                                <input type="checkbox" id="am2_sem" value="semana" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Semana</span>
                                     <span class="option-price">10 € / sem</span>
@@ -656,7 +670,7 @@
                         </div>
                         <div class="option-card" id="card_am2_per" onclick="selectOption('am2', 'periodo')">
                             <div class="option-header">
-                                <input type="radio" name="am2" id="am2_per" value="periodo" onchange="calculate()">
+                                <input type="checkbox" id="am2_per" value="periodo" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Completo</span>
                                     <span class="option-price">47 €</span>
@@ -668,13 +682,13 @@
 
                 <div class="form-group">
                     <label class="checkbox-row" onclick="event.stopPropagation();">
-                        <input type="checkbox" id="c2_active" onchange="if(this.checked) document.getElementById('am2_active').checked = false; calculate()">
+                        <input type="checkbox" id="c2_active" onchange="calculate()">
                         <span>Servicio Comedor (14-15:30h)</span>
                     </label>
                     <div class="radio-grid" id="c2_options">
                         <div class="option-card" id="card_c2_mes" onclick="selectOption('c2', 'mes')">
                             <div class="option-header">
-                                <input type="radio" name="c2" id="c2_mes" value="mes" checked onchange="calculate()">
+                                <input type="checkbox" id="c2_mes" value="mes" checked onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Mes</span>
                                     <span class="option-price">175 €</span>
@@ -683,7 +697,7 @@
                         </div>
                         <div class="option-card" id="card_c2_sem" onclick="selectOption('c2', 'semana')">
                             <div class="option-header">
-                                <input type="radio" name="c2" id="c2_sem" value="semana" onchange="calculate()">
+                                <input type="checkbox" id="c2_sem" value="semana" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Semana</span>
                                     <span class="option-price">40 € / sem</span>
@@ -697,7 +711,7 @@
                         </div>
                         <div class="option-card" id="card_c2_dia" onclick="selectOption('c2', 'dia')">
                             <div class="option-header">
-                                <input type="radio" name="c2" id="c2_dia" value="dia" onchange="calculate()">
+                                <input type="checkbox" id="c2_dia" value="dia" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Día</span>
                                     <span class="option-price">8,50 € / día</span>
@@ -711,7 +725,7 @@
                         </div>
                         <div class="option-card" id="card_c2_per" onclick="selectOption('c2', 'periodo')">
                             <div class="option-header">
-                                <input type="radio" name="c2" id="c2_per" value="periodo" onchange="calculate()">
+                                <input type="checkbox" id="c2_per" value="periodo" onchange="calculate()">
                                 <div class="option-info">
                                     <span class="option-name">Completo</span>
                                     <span class="option-price">215 €</span>
@@ -813,7 +827,11 @@
     function selectOption(group, type) {
         const input = document.getElementById(`${group}_${type}`);
         if (input) {
-            input.checked = true;
+            if (input.type === 'radio') {
+                input.checked = true;
+            } else {
+                input.checked = !input.checked;
+            }
             calculate();
         }
     }
@@ -841,13 +859,17 @@
 
         // Helper to update selection cards style
         const updateCards = (name) => {
-            const radio = document.querySelector(`input[name="${name}"]:checked`);
-            document.querySelectorAll(`.option-card[id^="card_${name}_"]`).forEach(card => {
-                card.classList.remove('selected');
+            const inputs = document.querySelectorAll(`input[id^="${name}_"]`);
+            inputs.forEach(input => {
+                const card = document.getElementById(`card_${name}_${input.value}`);
+                if (card) {
+                    if (input.checked) {
+                        card.classList.add('selected');
+                    } else {
+                        card.classList.remove('selected');
+                    }
+                }
             });
-            if (radio) {
-                document.getElementById(`card_${name}_${radio.value}`).classList.add('selected');
-            }
         };
 
         ['ev1', 'ev2', 'am1', 'am2', 'c1', 'c2'].forEach(updateCards);
@@ -861,64 +883,91 @@
             }
         });
 
-        // Helper to get price with qty
-        const getPrice = (name, category) => {
-            const radio = document.querySelector(`input[name="${name}"]:checked`);
-            if (!radio) return { total: 0, type: '', qty: 1 };
-            const type = radio.value;
-            const base = prices[category][type];
-            const qty = quantities[name][type] || 1;
-            return { total: base * qty, type, qty, base };
+        const am1Active = document.getElementById('am1_active').checked;
+        const c1Active = document.getElementById('c1_active').checked;
+        const am2Active = document.getElementById('am2_active').checked;
+        const c2Active = document.getElementById('c2_active').checked;
+
+        // Helper to get price with qty for main services (can be multiple)
+        const getMultiPrice = (prefix, category) => {
+            const checked = Array.from(document.querySelectorAll(`input[id^="${prefix}_"]:checked`));
+            let total = 0;
+            let breakdown = [];
+            let discountableTotal = 0;
+
+            checked.forEach(input => {
+                const type = input.value;
+                const base = prices[category][type];
+                const qty = quantities[prefix][type] || 1;
+                const lineTotal = base * qty;
+                total += lineTotal;
+                
+                if (type !== 'dia') {
+                    discountableTotal += lineTotal;
+                }
+
+                breakdown.push({
+                    type,
+                    qty,
+                    base,
+                    total: lineTotal
+                });
+            });
+
+            return { total, breakdown, discountableTotal };
         };
 
-        // Child 1
-        const res_ev1 = getPrice('ev1', 'ev');
-        const am1Active = document.getElementById('am1_active').checked;
-        const res_am1 = am1Active ? getPrice('am1', 'am') : { total: 0 };
-        const c1Active = document.getElementById('c1_active').checked;
-        const res_c1 = c1Active ? getPrice('c1', 'c') : { total: 0 };
+        const res_ev1 = getMultiPrice('ev1', 'ev');
+        const res_am1 = am1Active ? getMultiPrice('am1', 'am') : { total: 0, breakdown: [] };
+        const res_c1 = c1Active ? getMultiPrice('c1', 'c') : { total: 0, breakdown: [] };
         
         let subtotal1 = res_ev1.total + res_am1.total + res_c1.total;
 
-        document.getElementById('sum_ev1').innerHTML = formatCurrency(res_ev1.total) + 
-            (res_ev1.qty > 1 ? `<span class="unit-pill">${res_ev1.qty} ${res_ev1.type === 'semana' ? 'sem.' : 'días'}</span>` : '');
-        document.getElementById('sum_am1').innerHTML = am1Active ? formatCurrency(res_am1.total) + 
-            (res_am1.qty > 1 ? `<span class="unit-pill">${res_am1.qty} sem.</span>` : '') : 'No seleccionado';
-        document.getElementById('sum_c1').innerHTML = c1Active ? formatCurrency(res_c1.total) + 
-            (res_c1.qty > 1 ? `<span class="unit-pill">${res_c1.qty} ${res_c1.type === 'semana' ? 'sem.' : 'días'}</span>` : '') : 'No seleccionado';
+        // Custom summary for multi-selection
+        const createSummaryHtml = (res) => {
+            let html = formatCurrency(res.total);
+            if (res.breakdown && res.breakdown.length > 1) {
+                html += ' <div style="font-size: 10px; opacity: 0.7;">(' + 
+                    res.breakdown.map(b => `${b.qty > 1 ? b.qty + ' ' : ''}${b.type}`).join(' + ') + 
+                    ')</div>';
+            } else if (res.breakdown && res.breakdown.length === 1) {
+                const b = res.breakdown[0];
+                if (b.qty > 1) {
+                    html += `<span class="unit-pill">${b.qty} ${b.type === 'semana' ? 'sem.' : 'días'}</span>`;
+                }
+            }
+            return html;
+        };
+
+        document.getElementById('sum_ev1').innerHTML = createSummaryHtml(res_ev1);
+        document.getElementById('sum_am1').innerHTML = am1Active ? createSummaryHtml(res_am1) : 'No seleccionado';
+        document.getElementById('sum_c1').innerHTML = c1Active ? createSummaryHtml(res_c1) : 'No seleccionado';
         document.getElementById('sub_c1').textContent = formatCurrency(subtotal1);
 
         // Child 2
         let total = subtotal1;
         if (secondActive) {
-            const res_ev2 = getPrice('ev2', 'ev');
-            let discount = 0;
-            if (res_ev2.type !== 'dia') {
-                discount = res_ev2.total * DISCOUNT_RATE;
-            }
-            let sub2_ev_final = res_ev2.total - discount;
+            const res_ev2 = getMultiPrice('ev2', 'ev');
+            const res_am2 = am2Active ? getMultiPrice('am2', 'am') : { total: 0, breakdown: [] };
+            const res_c2 = c2Active ? getMultiPrice('c2', 'c') : { total: 0, breakdown: [] };
+
+            // Discount only applies to 'ev', 'am', 'c' entries that are NOT 'dia'
+            const discountableTotal = res_ev2.discountableTotal + (am2Active ? res_am2.discountableTotal : 0) + (c2Active ? res_c2.discountableTotal : 0);
+            const discount = discountableTotal * DISCOUNT_RATE;
             
-            const am2Active = document.getElementById('am2_active').checked;
-            const res_am2 = am2Active ? getPrice('am2', 'am') : { total: 0 };
-            const c2Active = document.getElementById('c2_active').checked;
-            const res_c2 = c2Active ? getPrice('c2', 'c') : { total: 0 };
+            let subtotal2 = res_ev2.total + res_am2.total + res_c2.total - discount;
 
-            let subtotal2 = sub2_ev_final + res_am2.total + res_c2.total;
-
-            document.getElementById('sum_ev2').innerHTML = formatCurrency(res_ev2.total) + 
-                (res_ev2.qty > 1 ? `<span class="unit-pill">${res_ev2.qty} ${res_ev2.type === 'semana' ? 'sem.' : 'días'}</span>` : '');
+            document.getElementById('sum_ev2').innerHTML = createSummaryHtml(res_ev2);
             
             if (discount > 0) {
                 document.getElementById('discount_ev2_container').classList.remove('hidden');
-                document.getElementById('discount_ev2_label').textContent = 'Descuento hermano/a –10%: –' + formatCurrency(discount);
+                document.getElementById('discount_ev2_label').textContent = 'Desc. hermano/a TARIFA (–10%): –' + formatCurrency(discount);
             } else {
                 document.getElementById('discount_ev2_container').classList.add('hidden');
             }
             
-            document.getElementById('sum_am2').innerHTML = am2Active ? formatCurrency(res_am2.total) + 
-                (res_am2.qty > 1 ? `<span class="unit-pill">${res_am2.qty} sem.</span>` : '') : 'No seleccionado';
-            document.getElementById('sum_c2').innerHTML = c2Active ? formatCurrency(res_c2.total) + 
-                (res_c2.qty > 1 ? `<span class="unit-pill">${res_c2.qty} ${res_c2.type === 'semana' ? 'sem.' : 'días'}</span>` : '') : 'No seleccionado';
+            document.getElementById('sum_am2').innerHTML = am2Active ? createSummaryHtml(res_am2) : 'No seleccionado';
+            document.getElementById('sum_c2').innerHTML = c2Active ? createSummaryHtml(res_c2) : 'No seleccionado';
             document.getElementById('sub_c2').textContent = formatCurrency(subtotal2);
 
             total += subtotal2;

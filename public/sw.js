@@ -2,7 +2,8 @@ const CACHE_NAME = 'mequetrefe-calc-v1';
 const ASSETS = [
   './',
   './index.html',
-  './manifest.webmanifest'
+  './manifest.webmanifest',
+  './icon-512.png'
 ];
 
 self.addEventListener('install', event => {
